@@ -1,4 +1,4 @@
 all:
-	gcc -o linked linkedlist.c
+	gcc -o linked linkedsongs.c
 run:
 	./linked
