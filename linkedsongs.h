@@ -8,9 +8,10 @@ struct song_node{
     struct song_node *next;
 };
 
-struct song_node * add_song();
-struct song_node * insert_front();
-struct song_node * order_list();
+struct song_node * add_song(char n[100], char a[100]);
+struct song_node * insert_front(struct song_node * list, char n[100], char a[100]);
+struct song_node * order_list(struct song_node * list);
+// helper
 void print_list();
 struct song_node * find_artist();
 struct song_node * find_song();
