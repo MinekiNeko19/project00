@@ -9,7 +9,7 @@ struct song_node{
 };
 
 // struct song_node * add_song(char n[100], char a[100]);
-struct song_node * insert_front(struct song_node * list, char n[100], char a[100]);
+struct song_node * insert_front(struct song_node * list, char a[100], char s[100]);
 struct song_node * order_list(struct song_node * list);
 struct song_node * compare_songs(struct song_node * s1, struct song_node * s2); // helper
 void print_list(struct song_node * list);
