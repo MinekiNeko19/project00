@@ -29,12 +29,19 @@ int main(){
     print_song(find_song(dw, "yeet", "delete"));
 
     printf("\nTesting compare_song and order_list:\n");
-    printf("%d\n",compare_songs(dw, dw->next));
+    // printf("%d\n",compare_songs(dw, dw->next));
+    printf("original: \n");
     print_list(dw);
         // swap(dw, dw->next);
         // print_list(dw);
     dw = order_list(dw);
+    printf("\nnew: \n");
     print_list(dw);
+
+    printf("\nTesting find_artist\n");
+    print_list(find_artist(dw,"pearl jam"));
+    print_list(find_artist(dw,"toto"));
+
     
     return 0;
 }
@@ -65,7 +72,7 @@ struct song_node * order_list(struct song_node * list){
         while (temp->next) {
             if(compare_songs(temp,temp->next)) {
                 swap(temp, temp->next);
-                print_list(list);
+                // print_list(list);
                 errors++;
             }
             temp = temp -> next;
@@ -88,7 +95,7 @@ int compare_songs(struct song_node * s1, struct song_node * s2) { // helper, cha
 }
 
 void swap(struct song_node * s1, struct song_node * s2) { // helper
-    printf("\nswapping %s and %s\n", s1->name, s2->name);
+    // printf("\nswapping %s and %s\n", s1->name, s2->name);
     char astore[100];
     char nstore[100];
     strcpy(astore,s1->artist);
@@ -120,14 +127,14 @@ struct song_node * find_song(struct song_node * list, char a[100], char s[100]) 
     return NULL;
 }
 
-// struct song_node * find_artist(struct song_node * list, char a[100]) { // do order list first before testing this
-//     struct song_node * temp = list;
-//     while (temp) {
-//         if (!strcmp(temp -> artist,a)) {
-//             return temp;
-//         }
-//         temp = temp -> next;
-//     }
-//     printf("%s by %s not found!\n", a, s);
-//     return NULL;
-// }
+struct song_node * find_artist(struct song_node * list, char a[100]) { // do order list first before testing this
+    struct song_node * temp = list;
+    while (temp) {
+        if (!strcmp(temp -> artist,a)) {
+            return temp;
+        }
+        temp = temp -> next;
+    }
+    printf("artist %s not found!\n", a);
+    return NULL;
+}
