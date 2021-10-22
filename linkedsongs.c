@@ -7,9 +7,9 @@ int main(){
     dw = insert_front(dw, "radiohead", "paranoid android");
     dw = insert_front(dw, "pink floyd", "time");
     dw = insert_front(dw, "pearl jam", "yellow ledbetter");
-    dw = insert_front(dw, "pearl jam", "even flow");
     dw = insert_front(dw, "pearl jam", "alive");
     dw = insert_front(dw, "ac/dc", "thunderstruck");
+    dw = insert_front(dw, "pearl jam", "even flow");
     print_list(dw);
 
     printf("\nTesting find_song and print_song:\n");
@@ -18,6 +18,7 @@ int main(){
 
     printf("\nTesting compare_song and order_list:\n");
     print_song(compare_songs(dw));
+    print_list(dw);
     
     return 0;
 }
@@ -40,7 +41,7 @@ struct song_node * insert_front(struct song_node * list, char a[100], char s[100
     return list;
 }
 
-// struct song_node * order_list(struct song_node * list); // trying for quicksort
+// struct song_node * order_list(struct song_node * list); // nvm we'll do the slow bubble sort
 // struct song_node * compare_songs(struct song_node * s1, struct song_node * s2) { // helper, change later to take into account capitalization
 //     struct song_node * temp;
 //     char one[100];
@@ -56,20 +57,27 @@ struct song_node * insert_front(struct song_node * list, char a[100], char s[100
 //     }
 // }
 
-struct song_node * compare_songs(struct song_node * prev) { // helper, change later to take into account capitalization
-    struct song_node * s1 = prev -> next;
+struct song_node * compare_songs(struct song_node * s1) { // helper, change later for capitalization
     struct song_node * s2 = s1 -> next;
+    struct song_node * temp;
     char one[100];
     char two[100];
     strcpy(one, s1-> artist);
     strcpy(two, s2 -> artist);
 
-    if (one[0] < two[0]) { // prev s1 s2 -> prev s2 s1
+    if (strcmp(one, two)) { // prev s1 s2 -> prev s2 s1
+        temp = s1;
+        strcpy(temp -> artist, s1 -> artist);
+        strcpy(temp -> name, s1 -> name);
+        temp -> next = s1 -> next;
+        strcpy(s1 -> artist, s2 -> artist);
+        strcpy(s1 -> name, s2 -> name);
         s1 -> next = s2 -> next;
-        prev -> next = s2;
-        s2 -> next = s1;
+        strcpy(s2 -> artist, temp -> artist);
+        strcpy(s2 -> name, temp -> name);
+        s2 -> next = temp -> next;
     }
-    return prev -> next;
+    return s1 -> next;
 }
 
 void print_song(struct song_node * song) {
