@@ -42,6 +42,9 @@ int main(){
     print_list(find_artist(dw,"pearl jam"));
     print_list(find_artist(dw,"toto"));
 
+    printf("\nTesting random_song\n");
+    print_song(random_song(dw));
+
     
     return 0;
 }
@@ -137,4 +140,24 @@ struct song_node * find_artist(struct song_node * list, char a[100]) { // do ord
     }
     printf("artist %s not found!\n", a);
     return NULL;
+}
+
+struct song_node * random_song(struct song_node * list) {
+    srand(time(NULL));
+    struct song_node * temp = list;
+    int num = 0;
+    while(temp) {
+        num++;
+        temp = temp -> next;
+        // printf("running\n");
+    }
+    // printf("%d\n", num);
+    temp = list;
+    num = rand() % (num);
+    // printf("%d\n", num);
+    while(num) {
+        temp = temp -> next;
+        num--;
+    }
+    return temp;
 }
