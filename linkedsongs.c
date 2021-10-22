@@ -51,6 +51,12 @@ int main(){
     print_song(remove_song(dw,"pink floyd", "time"));
     print_list(dw);
 
+    printf("\nTesting free_list\n");
+    printf("original: \n");
+    print_list(dw);
+    dw = free_list(dw);
+    printf("\nnew: \n");
+    print_list(dw);
     
     return 0;
 }
@@ -191,4 +197,14 @@ struct song_node * remove_song(struct song_node * list, char a[100], char s[100]
 
     printf("%s by %s not found!\n", a, s);
     return NULL;
+}
+
+struct song_node * free_list(struct song_node * list) {
+    struct song_node * temp = list;
+    while (list) {
+        list = list -> next;
+        free(temp);
+        temp = list;
+    }
+    return list;
 }
