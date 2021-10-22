@@ -3,6 +3,8 @@
 int main(){
     struct song_node * dw;
     printf("\nTesting print_list:\n"); // change some later to test capitalization
+
+    // scrambled
     dw = insert_front(dw, "pearl jam", "yellow ledbetter");
     dw = insert_front(dw, "radiohead", "paranoid android");
     dw = insert_front(dw, "radiohead", "street spirit (fade out)");
@@ -10,6 +12,16 @@ int main(){
     dw = insert_front(dw, "pearl jam", "even flow");
     dw = insert_front(dw, "pink floyd", "time");
     dw = insert_front(dw, "pearl jam", "alive");
+
+    // ordered
+    // dw = insert_front(dw, "radiohead", "street spirit (fade out)");
+    // dw = insert_front(dw, "radiohead", "paranoid android");
+    // dw = insert_front(dw, "pink floyd", "time");
+    // dw = insert_front(dw, "pearl jam", "yellow ledbetter");
+    // dw = insert_front(dw, "pearl jam", "even flow");
+    // dw = insert_front(dw, "pearl jam", "alive");
+    // dw = insert_front(dw, "ac/dc", "thunderstruck");
+
     print_list(dw);
 
     printf("\nTesting find_song and print_song:\n");
@@ -19,10 +31,10 @@ int main(){
     printf("\nTesting compare_song and order_list:\n");
     printf("%d\n",compare_songs(dw, dw->next));
     print_list(dw);
-    swap(dw, dw->next);
+        // swap(dw, dw->next);
+        // print_list(dw);
+    dw = order_list(dw);
     print_list(dw);
-    // dw = order_list(dw);
-    // print_list(dw);
     
     return 0;
 }
@@ -47,7 +59,7 @@ struct song_node * insert_front(struct song_node * list, char a[100], char s[100
 
 struct song_node * order_list(struct song_node * list){
     struct song_node * temp = list;
-    while (temp) {
+    while (temp->next) {
         if(compare_songs(temp,temp->next)) {
             swap(temp, temp->next);
             print_list(list);
@@ -59,17 +71,18 @@ struct song_node * order_list(struct song_node * list){
 
 int compare_songs(struct song_node * s1, struct song_node * s2) { // helper, change later for capitalization
     if (strcmp(s1 -> artist, s2->artist) < 0) {
-        return 1;
+        return 0;
     }
     if (strcmp(s1 -> artist, s2->artist) == 0) {
         if (strcmp(s1 -> name, s2->name) < 0) {
-            return 1;
+            return 0;
         }
     }
-    return 0;
+    return 1;
 }
 
-void swap(struct song_node * s1, struct song_node * s2) { // helper, does the sus swapping
+void swap(struct song_node * s1, struct song_node * s2) { // helper
+    printf("\nswapping %s and %s\n", s1->name, s2->name);
     char astore[100];
     char nstore[100];
     strcpy(astore,s1->artist);
