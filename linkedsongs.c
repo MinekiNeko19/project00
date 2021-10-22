@@ -1,66 +1,5 @@
 #include "linkedsongs.h"
 
-// int main(){
-//     struct song_node * dw;
-//     printf("\nTesting print_list:\n"); // change some later to test capitalization
-
-//     // scrambled
-//     dw = insert_front(dw, "pearl jam", "yellow ledbetter");
-//     dw = insert_front(dw, "radiohead", "paranoid android");
-//     dw = insert_front(dw, "radiohead", "street spirit (fade out)");
-//     dw = insert_front(dw, "ac/dc", "thunderstruck");
-//     dw = insert_front(dw, "pearl jam", "even flow");
-//     dw = insert_front(dw, "pink floyd", "time");
-//     dw = insert_front(dw, "pearl jam", "alive");
-
-//     // ordered
-//     // dw = insert_front(dw, "radiohead", "street spirit (fade out)");
-//     // dw = insert_front(dw, "radiohead", "paranoid android");
-//     // dw = insert_front(dw, "pink floyd", "time");
-//     // dw = insert_front(dw, "pearl jam", "yellow ledbetter");
-//     // dw = insert_front(dw, "pearl jam", "even flow");
-//     // dw = insert_front(dw, "pearl jam", "alive");
-//     // dw = insert_front(dw, "ac/dc", "thunderstruck");
-
-//     print_list(dw);
-
-//     printf("\nTesting find_song and print_song:\n");
-//     print_song(find_song(dw, "pearl jam", "even flow"));
-//     print_song(find_song(dw, "yeet", "delete"));
-
-//     printf("\nTesting compare_song and order_list:\n");
-//     // printf("%d\n",compare_songs(dw, dw->next));
-//     printf("original: \n");
-//     print_list(dw);
-//         // swap(dw, dw->next);
-//         // print_list(dw);
-//     dw = order_list(dw);
-//     printf("\nnew: \n");
-//     print_list(dw);
-
-//     printf("\nTesting find_artist\n");
-//     print_list(find_artist(dw,"pearl jam"));
-//     print_list(find_artist(dw,"toto"));
-
-//     printf("\nTesting random_song\n");
-//     print_song(random_song(dw));
-
-    
-//     printf("\nTesting remove_song\n");
-//     print_list(dw);
-//     print_song(remove_song(dw,"pink floyd", "time"));
-//     print_list(dw);
-
-//     printf("\nTesting free_list\n");
-//     printf("original: \n");
-//     print_list(dw);
-//     dw = free_list(dw);
-//     printf("\nnew: \n");
-//     print_list(dw);
-    
-//     return 0;
-// }
-
 void print_list(struct song_node * list) {
     struct song_node * temp = list;
     while(temp) {
@@ -174,13 +113,7 @@ struct song_node * random_song(struct song_node * list) {
     return temp;
 }
 
-struct song_node * remove_song(struct song_node * list, char a[100], char s[100]) {
-    // struct song_node * temp = find_song(list,a,s);
-    // struct song_node * store = temp;
-    // swap(temp,temp->next);
-    // temp = temp -> next;
-    // store -> next = temp -> next;
-    
+struct song_node * remove_song(struct song_node * list, char a[100], char s[100]) {    
     struct song_node * temp = list;
     struct song_node * store = temp;
 
@@ -208,3 +141,66 @@ struct song_node * free_list(struct song_node * list) {
     }
     return list;
 }
+
+
+
+// int main(){
+//     struct song_node * dw;
+//     printf("\nTesting print_list:\n"); // change some later to test capitalization
+
+//     // scrambled
+//     dw = insert_front(dw, "pearl jam", "yellow ledbetter");
+//     dw = insert_front(dw, "radiohead", "paranoid android");
+//     dw = insert_front(dw, "radiohead", "street spirit (fade out)");
+//     dw = insert_front(dw, "ac/dc", "thunderstruck");
+//     dw = insert_front(dw, "pearl jam", "even flow");
+//     dw = insert_front(dw, "pink floyd", "time");
+//     dw = insert_front(dw, "pearl jam", "alive");
+
+//     // ordered
+//     // dw = insert_front(dw, "radiohead", "street spirit (fade out)");
+//     // dw = insert_front(dw, "radiohead", "paranoid android");
+//     // dw = insert_front(dw, "pink floyd", "time");
+//     // dw = insert_front(dw, "pearl jam", "yellow ledbetter");
+//     // dw = insert_front(dw, "pearl jam", "even flow");
+//     // dw = insert_front(dw, "pearl jam", "alive");
+//     // dw = insert_front(dw, "ac/dc", "thunderstruck");
+
+//     print_list(dw);
+
+//     printf("\nTesting find_song and print_song:\n");
+//     print_song(find_song(dw, "pearl jam", "even flow"));
+//     print_song(find_song(dw, "yeet", "delete"));
+
+//     printf("\nTesting compare_song and order_list:\n");
+//     // printf("%d\n",compare_songs(dw, dw->next));
+//     printf("original: \n");
+//     print_list(dw);
+//         // swap(dw, dw->next);
+//         // print_list(dw);
+//     dw = order_list(dw);
+//     printf("\nnew: \n");
+//     print_list(dw);
+
+//     printf("\nTesting find_artist\n");
+//     print_list(find_artist(dw,"pearl jam"));
+//     print_list(find_artist(dw,"toto"));
+
+//     printf("\nTesting random_song\n");
+//     print_song(random_song(dw));
+
+    
+//     printf("\nTesting remove_song\n");
+//     print_list(dw);
+//     print_song(remove_song(dw,"pink floyd", "time"));
+//     print_list(dw);
+
+//     printf("\nTesting free_list\n");
+//     printf("original: \n");
+//     print_list(dw);
+//     dw = free_list(dw);
+//     printf("\nnew: \n");
+//     print_list(dw);
+    
+//     return 0;
+// }
