@@ -46,6 +46,12 @@ int main(){
     print_song(random_song(dw));
 
     
+    printf("\nTesting remove_song\n");
+    print_list(dw);
+    print_song(remove_song(dw,"pink floyd", "time"));
+    print_list(dw);
+
+    
     return 0;
 }
 
@@ -160,4 +166,29 @@ struct song_node * random_song(struct song_node * list) {
         num--;
     }
     return temp;
+}
+
+struct song_node * remove_song(struct song_node * list, char a[100], char s[100]) {
+    // struct song_node * temp = find_song(list,a,s);
+    // struct song_node * store = temp;
+    // swap(temp,temp->next);
+    // temp = temp -> next;
+    // store -> next = temp -> next;
+    
+    struct song_node * temp = list;
+    struct song_node * store = temp;
+
+    while(temp) {
+        if(!strcmp(temp -> next -> artist,a) && !strcmp(temp -> next -> name,s)) {
+            // print_song(temp);
+            store = temp -> next;
+            temp -> next = temp -> next -> next;
+            free(store);
+            return list;
+        }
+        temp = temp->next;
+    }
+
+    printf("%s by %s not found!\n", a, s);
+    return NULL;
 }
