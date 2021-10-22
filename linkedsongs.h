@@ -18,6 +18,6 @@ void print_list(struct song_node * list); // done
 void print_song(struct song_node * song); // helper // done
 struct song_node * find_song(struct song_node * list, char a[100], char s[100]); // done
 struct song_node * find_artist(struct song_node * list, char a[100]); // done
-struct song_node * random_song(struct song_node * list);
-struct song_node * remove_song(struct song_node * list, char a[100], char s[100]);
-struct song_node * free_list(struct song_node * list);
+struct song_node * random_song(struct song_node * list); // done
+struct song_node * remove_song(struct song_node * list, char a[100], char s[100]); // done
+struct song_node * free_list(struct song_node * list); // done
