@@ -59,12 +59,18 @@ struct song_node * insert_front(struct song_node * list, char a[100], char s[100
 
 struct song_node * order_list(struct song_node * list){
     struct song_node * temp = list;
-    while (temp->next) {
-        if(compare_songs(temp,temp->next)) {
-            swap(temp, temp->next);
-            print_list(list);
+    int errors = 1;
+    while (errors) {
+        errors = 0;
+        while (temp->next) {
+            if(compare_songs(temp,temp->next)) {
+                swap(temp, temp->next);
+                print_list(list);
+                errors++;
+            }
+            temp = temp -> next;
         }
-        temp = temp -> next;
+        temp = list;
     }
     return list;
 }
