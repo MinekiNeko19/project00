@@ -87,6 +87,8 @@ int main() {
     print_song(find_songlib(dwlib,"radiohead","paranoid android"));
     print_song(find_songlib(dwlib,"tornados","brrr"));
 
+    print_song(find_artistlib(dwlib,"pearl jam"));
+    print_song(find_artistlib(dwlib,"jam"));
 
     return 0;
 }
@@ -112,7 +114,15 @@ struct song_node * find_songlib(struct song_node ** lib, char a[100], char s[100
     return find_song(lib[a[0]%97],a,s);
 }
 
-// struct song_node * find_artistlib(struct song_node ** lib, char a[100], char s[100]);
+struct song_node * find_artistlib(struct song_node ** lib, char a[100]) {
+    struct song_node * temp = find_artist(lib[a[0]%97],a);
+    while (temp && strcmp(temp -> artist,a)==0) {
+        printf("{%s, %s} | ", temp -> artist, temp -> name);
+        temp = temp -> next; 
+    }
+    printf("\n");
+    return find_artist(lib[a[0]%97],a);
+}
 
 void print_lib(struct song_node ** lib) {
     struct song_node ** temp = lib;
