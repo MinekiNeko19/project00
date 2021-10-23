@@ -1,5 +1,6 @@
 #include "linkedsongs.h"
 
+struct song_node ** make_lib();
 struct song_node ** add_song(struct song_node ** lib, char a[100], char s[100]);
 struct song_node * find_songlib(struct song_node ** lib, char a[100], char s[100]);
 struct song_node * find_artistlib(struct song_node ** lib, char a[100], char s[100]);
