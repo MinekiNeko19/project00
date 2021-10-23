@@ -71,9 +71,9 @@ int main() {
     printf("\nTesting make_lib, add_song, and print_lib\n\n");
     struct song_node ** dwlib = make_lib();
     struct song_node * temp;
-    temp = insert_front(temp, "yoink", "bonk");
-    dwlib[1] = temp;
-    // dwlib = add_song(dwlib, "pearl jam", "yellow ledbetter");
+    // temp = insert_front(temp, "yoink", "bonk");
+    // dwlib[1] = temp;
+    dwlib = add_song(dwlib, "pearl jam", "yellow ledbetter");
     // dwlib = add_song(dwlib, "radiohead", "paranoid android");
     // dwlib = add_song(dwlib, "radiohead", "street spirit (fade out)");
     // dwlib = add_song(dwlib, "ac/dc", "thunderstruck");
@@ -93,10 +93,12 @@ struct song_node ** make_lib() {
 struct song_node ** add_song(struct song_node ** lib, char a[100], char s[100]) {
     // Uppercase Letters − A - Z having ASCII values from 65 - 90 where, 65 and 90 are inclusive.
     // Lowercase Letter − a - z having ASCII values from 97 - 122 where, 97 and 122 are inclusive.
-    struct song_node * temp = malloc(sizeof(struct song_node));
+    struct song_node * temp = lib[a[0]%97];
     temp = insert_front(temp, a, s);
-    printf("%c\n",a[0]%65);
-    lib[a[0] % 97] = temp;
+    temp = order_list(temp);
+    // printf("%c %d\n",a[0]%97,a[0]%97);
+    // print_list(temp);
+    lib[a[0]%97] = temp;
     return lib;
 }
 
@@ -110,12 +112,11 @@ void print_lib(struct song_node ** lib) {
     for (i = 0; i < 27; i++) {
         tempsong = lib[i];
         if (i != 26) {
-            printf("%d\n", 65+i);
+            printf("%d %c\n", 65+i,65+i);
         } else {
             printf("Other:\n");
         }
         print_list(tempsong);
-
     }
 }
 
