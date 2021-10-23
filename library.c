@@ -80,6 +80,17 @@ int main() {
     dwlib = add_song(dwlib, "pearl jam", "even flow");
     dwlib = add_song(dwlib, "pink floyd", "time");
     dwlib = add_song(dwlib, "pearl jam", "alive");
+
+    //random entries    
+    // dwlib = add_song(dwlib, "yam", "alive");
+    // dwlib = add_song(dwlib, "spam", "open");
+    // dwlib = add_song(dwlib, "doggo", "bork");
+    // dwlib = add_song(dwlib, "cat", "meow");
+    // dwlib = add_song(dwlib, "chatty jam", "dead");
+    // dwlib = add_song(dwlib, "osu jam", "clicking circles");
+    // dwlib = add_song(dwlib, "tornato", "sauce");
+    // dwlib = add_song(dwlib, "queen", "rap");
+
     print_lib(dwlib);
     
     printf("\n==================================\n");
@@ -164,14 +175,17 @@ void print_artist(struct song_node ** lib, char a[100]) {
 }
 
 struct song_node * shuffle(struct song_node ** lib, int numSongs) {
-    struct song_node * queue = malloc(numSongs*sizeof(struct song_node));
+    struct song_node * queue = NULL;
     srand(time(NULL));
     while(numSongs) {
+        // printf("Songs that need to be added: %d\n", numSongs);
         int r = rand()%27;
         printf("%d\n",r);
         if (lib[r]){
+            printf("List we're picking from: %d\n", r);
+            print_list(lib[r]);
             struct song_node * temp = random_song(lib[r]);
-            printf("%d\n",r);
+            printf("Adding: %s by %s\n", temp->artist, temp->name);
             queue = insert_front(queue, temp -> artist, temp -> name);
         } else {
             numSongs++;
