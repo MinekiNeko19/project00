@@ -142,8 +142,6 @@ struct song_node * free_list(struct song_node * list) {
     return list;
 }
 
-
-
 // int main(){
 //     struct song_node * dw;
 //     printf("\nTesting print_list:\n"); // change some later to test capitalization
