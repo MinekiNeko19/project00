@@ -117,6 +117,13 @@ int main() {
     printf("\nTesting shuffle\n\n");
     print_list(shuffle(dwlib,5));
 
+    printf("\n==================================\n");
+    printf("\nTesting delete song\n\n");
+    dwlib = delete_song(dwlib, "pearl jam","even flow");
+    print_lib(dwlib);
+    dwlib = delete_song(dwlib, "yaur","mp");
+    print_lib(dwlib);
+
     return 0;
 }
 
@@ -195,5 +202,9 @@ struct song_node * shuffle(struct song_node ** lib, int numSongs) {
     return queue;
 }
 
-// struct song_node ** delete_song(struct song_node ** lib, char a[100], char s[100]);
+struct song_node ** delete_song(struct song_node ** lib, char a[100], char s[100]) {
+    struct song_node * temp = lib[a[0]%97];
+    temp = remove_song(temp,a,s);
+    return lib;
+}
 // struct song_node ** free_lib(struct song_node ** lib);
