@@ -74,13 +74,19 @@ int main() {
     // temp = insert_front(temp, "yoink", "bonk");
     // dwlib[1] = temp;
     dwlib = add_song(dwlib, "pearl jam", "yellow ledbetter");
-    // dwlib = add_song(dwlib, "radiohead", "paranoid android");
-    // dwlib = add_song(dwlib, "radiohead", "street spirit (fade out)");
-    // dwlib = add_song(dwlib, "ac/dc", "thunderstruck");
-    // dwlib = add_song(dwlib, "pearl jam", "even flow");
-    // dwlib = add_song(dwlib, "pink floyd", "time");
-    // dwlib = add_song(dwlib, "pearl jam", "alive");
+    dwlib = add_song(dwlib, "radiohead", "paranoid android");
+    dwlib = add_song(dwlib, "radiohead", "street spirit (fade out)");
+    dwlib = add_song(dwlib, "ac/dc", "thunderstruck");
+    dwlib = add_song(dwlib, "pearl jam", "even flow");
+    dwlib = add_song(dwlib, "pink floyd", "time");
+    dwlib = add_song(dwlib, "pearl jam", "alive");
     print_lib(dwlib);
+    
+    printf("\n==================================\n");
+    printf("\nTesting find_song, find_artist\n\n");
+    print_song(find_songlib(dwlib,"radiohead","paranoid android"));
+    print_song(find_songlib(dwlib,"tornados","brrr"));
+
 
     return 0;
 }
@@ -102,7 +108,10 @@ struct song_node ** add_song(struct song_node ** lib, char a[100], char s[100]) 
     return lib;
 }
 
-// struct song_node * find_songlib(struct song_node ** lib, char a[100], char s[100]);
+struct song_node * find_songlib(struct song_node ** lib, char a[100], char s[100]) {
+    return find_song(lib[a[0]%97],a,s);
+}
+
 // struct song_node * find_artistlib(struct song_node ** lib, char a[100], char s[100]);
 
 void print_lib(struct song_node ** lib) {
