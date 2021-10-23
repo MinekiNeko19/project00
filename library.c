@@ -83,12 +83,24 @@ int main() {
     print_lib(dwlib);
     
     printf("\n==================================\n");
-    printf("\nTesting find_song, find_artist\n\n");
+    printf("\nTesting find_songlib\n\n");
     print_song(find_songlib(dwlib,"radiohead","paranoid android"));
     print_song(find_songlib(dwlib,"tornados","brrr"));
 
+    printf("\n==================================\n");
+    printf("\nTesting find_artist, print_artist\n\n");
     print_song(find_artistlib(dwlib,"pearl jam"));
     print_song(find_artistlib(dwlib,"jam"));
+
+    printf("\n==================================\n");
+    printf("\nTesting print_letter\n\n");
+    print_letter(dwlib,'p');
+    print_letter(dwlib,'[');
+
+    printf("\n==================================\n");
+    printf("\nTesting print_artist\n\n");
+    print_artist(dwlib, "pearl jam");
+    print_artist(dwlib, "jam");
 
     return 0;
 }
@@ -116,11 +128,6 @@ struct song_node * find_songlib(struct song_node ** lib, char a[100], char s[100
 
 struct song_node * find_artistlib(struct song_node ** lib, char a[100]) {
     struct song_node * temp = find_artist(lib[a[0]%97],a);
-    while (temp && strcmp(temp -> artist,a)==0) {
-        printf("{%s, %s} | ", temp -> artist, temp -> name);
-        temp = temp -> next; 
-    }
-    printf("\n");
     return find_artist(lib[a[0]%97],a);
 }
 
@@ -139,8 +146,19 @@ void print_lib(struct song_node ** lib) {
     }
 }
 
-// void print_letter(struct song_node ** lib);
-// void print_artist(struct song_node ** lib);
+void print_letter(struct song_node ** lib, char c) {
+    print_list(lib[c%97]);
+}
+
+void print_artist(struct song_node ** lib, char a[100]) {
+    struct song_node * temp = find_artistlib(lib, a);
+    while (temp && strcmp(temp -> artist,a)==0) {
+        printf("{%s, %s} | ", temp -> artist, temp -> name);
+        temp = temp -> next; 
+    }
+    printf("\n");
+}
+
 // struct song_node * shuffle(struct song_node ** lib, int numSongs);
 // struct song_node ** delete_song(struct song_node ** lib, char a[100], char s[100]);
 // struct song_node ** free_lib(struct song_node ** lib);
