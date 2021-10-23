@@ -94,7 +94,7 @@ struct song_node * find_artist(struct song_node * list, char a[100]) { // do ord
 }
 
 struct song_node * random_song(struct song_node * list) {
-    srand(time(NULL));
+    // srand(time(NULL));
     struct song_node * temp = list;
     int num = 0;
     while(temp) {
