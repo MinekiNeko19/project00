@@ -102,6 +102,10 @@ int main() {
     print_artist(dwlib, "pearl jam");
     print_artist(dwlib, "jam");
 
+    printf("\n==================================\n");
+    printf("\nTesting shuffle\n\n");
+    print_list(shuffle(dwlib,5));
+
     return 0;
 }
 
@@ -159,6 +163,23 @@ void print_artist(struct song_node ** lib, char a[100]) {
     printf("\n");
 }
 
-// struct song_node * shuffle(struct song_node ** lib, int numSongs);
+struct song_node * shuffle(struct song_node ** lib, int numSongs) {
+    struct song_node * queue = malloc(numSongs*sizeof(struct song_node));
+    srand(time(NULL));
+    while(numSongs) {
+        int r = rand()%27;
+        printf("%d\n",r);
+        if (lib[r]){
+            struct song_node * temp = random_song(lib[r]);
+            printf("%d\n",r);
+            queue = insert_front(queue, temp -> artist, temp -> name);
+        } else {
+            numSongs++;
+        }
+        numSongs--;
+    } 
+    return queue;
+}
+
 // struct song_node ** delete_song(struct song_node ** lib, char a[100], char s[100]);
 // struct song_node ** free_lib(struct song_node ** lib);
